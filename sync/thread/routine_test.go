@@ -11,7 +11,7 @@ func TestRoutineId(t *testing.T) {
 	assert.True(t, RoutineId() > 0)
 }
 
-func TestRunSafe(t *testing.T) {
+func TestGo(t *testing.T) {
 	log.SetOutput(ioutil.Discard)
 
 	i := 0
