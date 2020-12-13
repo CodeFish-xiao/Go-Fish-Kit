@@ -1,4 +1,4 @@
-module Go-Fish-Kit
+module "github.com/CodeFish-xiao/go-fish-kit"
 
 go 1.15
 

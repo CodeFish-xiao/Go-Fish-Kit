@@ -1,7 +1,7 @@
 package thread
 
 import (
-	"Go-Fish-Kit/core/builtin"
+	"github.com/CodeFish-xiao/go-fish-kit/core/builtin"
 	"runtime"
 	"strconv"
 	"strings"
