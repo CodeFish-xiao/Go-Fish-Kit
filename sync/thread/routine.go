@@ -2,9 +2,9 @@ package thread
 
 import (
 	"Go-Fish-Kit/core/builtin"
-	"bytes"
 	"runtime"
 	"strconv"
+	"strings"
 )
 
 func Go(x func()) {
@@ -13,14 +13,17 @@ func Go(x func()) {
 
 // Only for debug, never use it in production
 func RoutineId() uint64 {
-	b := make([]byte, 64)
-	b = b[:runtime.Stack(b, false)]
-	b = bytes.TrimPrefix(b, []byte("goroutine "))
-	b = b[:bytes.IndexByte(b, ' ')]
-	// if error, just return 0
-	n, _ := strconv.ParseUint(string(b), 10, 64)
 
-	return n
+	buf := make([]byte, 64)
+	//通过 runtime.Stack 方法获取栈帧信息
+	n := runtime.Stack(buf[:], false)
+	// 得到id字符串
+	idField := strings.Fields(strings.TrimPrefix(string(buf[:n]), "goroutine "))[0]
+
+	id, _ := strconv.ParseUint(string(idField), 10, 64)
+	//若是err了，那就return 0
+	return id
+
 }
 
 func RunSafe(fn func()) {
