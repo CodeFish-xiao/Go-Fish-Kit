@@ -7,46 +7,48 @@ import (
 type Level int8
 
 const (
-	// TraceLevel level. Designates finer-grained informational events than the Debug.
+	// TraceLevel level. 指定比调试更细粒度的信息事件。
 	TraceLevel Level = iota - 2
-	// DebugLevel level. Usually only enabled when debugging. Very verbose logging.
+	// DebugLevel level.通常只在调试时启用。非常详细的日志记录。
 	DebugLevel
-	// InfoLevel is the default logging priority.
-	// General operational entries about what's going on inside the application.
+	// InfoLevel InfoLevel是默认的日志优先级。
+	// 关于应用程序内部运行情况的一般操作条目。
 	InfoLevel
-	// WarnLevel level. Non-critical entries that deserve eyes.
+	// WarnLevel level. 值得关注的非关键条目。
 	WarnLevel
-	// ErrorLevel level. Logs. Used for errors that should definitely be noted.
+	// ErrorLevel level. Logs. 日志用于应该明确指出的错误。
 	ErrorLevel
-	// FatalLevel level. Logs and then calls `logger.Exit(1)`. highest level of severity.
+	// FatalLevel level.日志，然后调用`logger.Exit(1)`。严重程度最高。
 	FatalLevel
 )
 
 func (l Level) String() string {
 	switch l {
 	case TraceLevel:
-		return "trace"
+		return "TRACE"
 	case DebugLevel:
-		return "debug"
+		return "DEBUG"
 	case InfoLevel:
-		return "info"
+		return "INFO"
 	case WarnLevel:
-		return "warn"
+		return "WARN"
 	case ErrorLevel:
-		return "error"
+		return "ERROR"
 	case FatalLevel:
-		return "fatal"
+		return "FATAL"
+	default:
+		return ""
 	}
-	return ""
+
 }
 
-// Enabled returns true if the given level is at or above this level.
+// Enabled 如果给定级别位于或高于此级别，则启用返回true。
 func (l Level) Enabled(lvl Level) bool {
 	return lvl >= l
 }
 
-// GetLevel converts a level string into a logger Level value.
-// returns an error if the input string does not match known values.
+// GetLevel GetLevel将一个级别字符串转换为一个日志记录器的级别值。
+// 如果输入字符串与已知值不匹配，则返回错误。
 func GetLevel(levelStr string) (Level, error) {
 	switch levelStr {
 	case TraceLevel.String():
