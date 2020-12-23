@@ -8,7 +8,7 @@ import (
 type Option func(*Options)
 
 type Options struct {
-	// The logging level the logger should log at. default is `InfoLevel`
+	// 日志记录器应该记录的日志级别。默认是“InfoLevel”
 	Level Level
 	// fields to always be logged
 	Fields map[string]interface{}
@@ -16,7 +16,7 @@ type Options struct {
 	Out io.Writer
 	// Caller skip frame count for file:line info
 	CallerSkipCount int
-	// Alternative options
+	// 备选方案
 	Context context.Context
 }
 
